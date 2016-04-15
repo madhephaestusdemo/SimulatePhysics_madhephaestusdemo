@@ -89,14 +89,8 @@ for(CSG part:referencedThingy){
 
 Thread t =new Thread({
 	// walk forward 10 increments of 10 mm totalling 100 mm translation
-	TransformNR move = new TransformNR(10,0,0,new RotationNR())
+	TransformNR move = new TransformNR(-10,0,0,new RotationNR( 0,0, -2))
 	double toSeconds=0.1//100 ms for each increment
-	for(int i=0;i<50;i++){
-		base.DriveArc(move, toSeconds);
-		ThreadUtil.wait((int)toSeconds*1000)
-	}
-	// turn 20 increments of 2 degrees totalling 40 degrees turn
-	move = new TransformNR(0,0,0,new RotationNR( 0,0, 2))
 	for(int i=0;i<50;i++){
 		base.DriveArc(move, toSeconds);
 		ThreadUtil.wait((int)toSeconds*1000)
