@@ -42,7 +42,7 @@ println "found: "+dev
 //Check if the device already exists in the device Manager
 if(dev==null){
 	//Create the kinematics model from the xml file describing the D-H compliant parameters. 
-	def file=["https://github.com/madhephaestus/BancroftMakerspaceProject2016.git","Roy.xml"]as String[]
+	def file=["https://gist.github.com/bcb4760a449190206170.git","CarlTheRobot.xml"]as String[]
 	//def file=["https://gist.github.com/bcb4760a449190206170.git","CarlTheRobot.xml"]as String[]
 	String xmlContent = ScriptingEngine.codeFromGit(file[0],file[1])[0];
 	MobileBase mb =new MobileBase(IOUtils.toInputStream(xmlContent, "UTF-8"));
