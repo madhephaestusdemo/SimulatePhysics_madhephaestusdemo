@@ -71,22 +71,38 @@ while(MobileBaseCadManager.get( base).getProcesIndictor().getProgress()<1){
 HashMap<DHLink, CSG> simplecad = MobileBaseCadManager.getSimplecad(base) 
 CSG baseCad=MobileBaseCadManager.getBaseCad(base)
 m = new MobileBasePhysicsManager(base, baseCad, simplecad);
+
+ArrayList<CSG> referencedThingy =  (ArrayList<CSG>)ScriptingEngine
+	                    .gitScriptRun(
+                                "https://gist.github.com/4814b39ee72e9f590757.git", // git location of the library
+	                              "javaCad.groovy" , // file to load
+	                              null// no parameters (see next tutorial)
+                        )
+for(CSG part:referencedThingy){
+	  PhysicsEngine.add(new CSGPhysicsManager(
+		part, 
+		new Vector3f(6, 2, 180),// starting point
+		0.02// mass
+		));                      
+}
+
+
 Thread t =new Thread({
 	// walk forward 10 increments of 10 mm totalling 100 mm translation
 	TransformNR move = new TransformNR(10,0,0,new RotationNR())
 	double toSeconds=0.1//100 ms for each increment
-	for(int i=0;i<10;i++){
+	for(int i=0;i<50;i++){
 		base.DriveArc(move, toSeconds);
 		ThreadUtil.wait((int)toSeconds*1000)
 	}
 	// turn 20 increments of 2 degrees totalling 40 degrees turn
 	move = new TransformNR(0,0,0,new RotationNR( 0,0, 2))
-	for(int i=0;i<20;i++){
+	for(int i=0;i<50;i++){
 		base.DriveArc(move, toSeconds);
 		ThreadUtil.wait((int)toSeconds*1000)
 	}
 })
-//t.start()
+t.start()
 int msLoopTime =200;
 BowlerStudioController.setCsg(PhysicsEngine.getCsgFromEngine());
 // run the physics engine for a few cycles
