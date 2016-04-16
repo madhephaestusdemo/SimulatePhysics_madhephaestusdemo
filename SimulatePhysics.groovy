@@ -100,7 +100,7 @@ t.start()
 int msLoopTime =200;
 BowlerStudioController.setCsg(PhysicsEngine.getCsgFromEngine());
 // run the physics engine for a few cycles
-for (int i = 0; i < 40000&& !Thread.interrupted(); i++) {
+for (int i = 0; i < 350&& !Thread.interrupted(); i++) {
 	long start = System.currentTimeMillis();
 	PhysicsEngine.stepMs(msLoopTime);
 	long took = (System.currentTimeMillis() - start);
