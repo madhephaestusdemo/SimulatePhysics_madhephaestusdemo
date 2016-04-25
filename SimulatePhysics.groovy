@@ -89,7 +89,7 @@ for(CSG part:referencedThingy){
 
 Thread t =new Thread({
 	// walk forward 10 increments of 10 mm totalling 100 mm translation
-	TransformNR move = new TransformNR(-10,0,0,new RotationNR( 0,0, -2))
+	TransformNR move = new TransformNR(10,0,0,new RotationNR( 0,0, 2))
 	double toSeconds=0.1//100 ms for each increment
 	for(int i=0;i<50;i++){
 		base.DriveArc(move, toSeconds);
