@@ -54,7 +54,7 @@ if(dev==null){
 }else{
 	println "Arm found, runing code"
 	//the device is already present on the system, load the one that exists.
-  	base=(MobileBase)dev
+  	base=(MobileBase) dev
 }
 
 base.DriveArc(new TransformNR(), 0);
@@ -78,11 +78,13 @@ ArrayList<CSG> referencedThingy =  (ArrayList<CSG>)ScriptingEngine
 	                              "javaCad.groovy" , // file to load
 	                              null// no parameters (see next tutorial)
                         )
+PhysicsCore core = PhysicsEngine.get()                     
 for(CSG part:referencedThingy){
 	  PhysicsEngine.add(new CSGPhysicsManager(
 		part, 
 		new Vector3f(6, 2, 180),// starting point
-		0.02// mass
+		0.02,// mass
+		core
 		));                      
 }
 
