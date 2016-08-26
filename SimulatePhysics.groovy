@@ -58,7 +58,7 @@ if(dev==null){
 }
 
 base.DriveArc(new TransformNR(), 0);
-PhysicsEngine.get();
+PhysicsCore core = PhysicsEngine.get()
 PhysicsEngine.clear();
 
 MobileBasePhysicsManager m;
@@ -78,10 +78,10 @@ ArrayList<CSG> referencedThingy =  (ArrayList<CSG>)ScriptingEngine
 	                              "javaCad.groovy" , // file to load
 	                              null// no parameters (see next tutorial)
                         )
-PhysicsCore core = PhysicsEngine.get()                     
+                     
 for(CSG part:referencedThingy){
 	  PhysicsEngine.add(new CSGPhysicsManager(
-		part, 
+		[part], 
 		new Vector3f(6, 2, 180),// starting point
 		0.02,// mass
 		core
