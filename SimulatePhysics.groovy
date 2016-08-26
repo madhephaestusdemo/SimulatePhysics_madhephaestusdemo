@@ -58,7 +58,7 @@ if(dev==null){
 }
 
 base.DriveArc(new TransformNR(), 0);
-
+PhysicsEngine.get();
 PhysicsEngine.clear();
 
 MobileBasePhysicsManager m;
