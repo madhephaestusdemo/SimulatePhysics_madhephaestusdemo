@@ -69,7 +69,7 @@ while(MobileBaseCadManager.get( base).getProcesIndictor().getProgress()<1){
 }
 
 HashMap<DHLink, CSG> simplecad = MobileBaseCadManager.getSimplecad(base) 
-CSG baseCad=MobileBaseCadManager.getBaseCad(base)
+def baseCad=MobileBaseCadManager.getBaseCad(base)
 m = new MobileBasePhysicsManager(base, baseCad, simplecad);
 
 ArrayList<CSG> referencedThingy =  (ArrayList<CSG>)ScriptingEngine
