@@ -42,7 +42,7 @@ println "found: "+dev
 //Check if the device already exists in the device Manager
 if(dev==null){
 	//Create the kinematics model from the xml file describing the D-H compliant parameters. 
-	def file=["https://gist.github.com/bcb4760a449190206170.git","CarlTheRobot.xml"]as String[]
+	def file=["https://github.com/madhephaestus/carl-the-hexapod.git","CarlTheRobot.xml"]as String[]
 	//def file=["https://gist.github.com/bcb4760a449190206170.git","CarlTheRobot.xml"]as String[]
 	String xmlContent = ScriptingEngine.codeFromGit(file[0],file[1])[0];
 	MobileBase mb =new MobileBase(IOUtils.toInputStream(xmlContent, "UTF-8"));
@@ -71,7 +71,7 @@ while(MobileBaseCadManager.get( base).getProcesIndictor().getProgress()<1){
 HashMap<DHLink, CSG> simplecad = MobileBaseCadManager.getSimplecad(base) 
 def baseCad=MobileBaseCadManager.getBaseCad(base)
 m = new MobileBasePhysicsManager(base, baseCad, simplecad);
-
+/*
 ArrayList<CSG> referencedThingy =  (ArrayList<CSG>)ScriptingEngine
 	                    .gitScriptRun(
                                 "https://gist.github.com/4814b39ee72e9f590757.git", // git location of the library
@@ -88,7 +88,7 @@ for(CSG part:referencedThingy){
 		));                      
 }
 
-
+*/
 Thread t =new Thread({
 	// walk forward 10 increments of 10 mm totalling 100 mm translation
 	TransformNR move = new TransformNR(10,0,0,new RotationNR( 0,0, 2))
