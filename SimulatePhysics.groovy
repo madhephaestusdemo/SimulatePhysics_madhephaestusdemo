@@ -1,5 +1,6 @@
 import javax.vecmath.Vector3f;
 import com.neuronrobotics.bowlerstudio.threed.*
+import org.apache.commons.io.IOUtils;
 
 MobileBase base;
 java.util.List<String> possible = DeviceManager.listConnectedDevice(MobileBase.class)
@@ -69,7 +70,7 @@ Thread t =new Thread({
 	}
 })
 t.start()
-int msLoopTime =100;
+int msLoopTime =10;
 BowlerStudioController.setCsg(PhysicsEngine.getCsgFromEngine());
 // run the physics engine for a few cycles
 for (int i = 0; i < 35000&& !Thread.interrupted(); i++) {
@@ -80,7 +81,7 @@ for (int i = 0; i < 35000&& !Thread.interrupted(); i++) {
 		ThreadUtil.wait((int) (msLoopTime - took)/4);
 		
 	}else{
-		//System.gc()
+		System.gc()
 		println "Real time broken! took "+took
 		System.gc()
 		if(took>2000)
