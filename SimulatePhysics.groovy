@@ -1,35 +1,6 @@
-import com.neuronrobotics.bowlerstudio.creature.CreatureLab;
-import org.apache.commons.io.IOUtils;
-import  com.neuronrobotics.bowlerstudio.physics.*;
-import com.neuronrobotics.bowlerstudio.threed.*;import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Set;
-
 import javax.vecmath.Vector3f;
+import com.neuronrobotics.bowlerstudio.threed.*
 
-import com.bulletphysics.BulletGlobals;
-import com.bulletphysics.dynamics.DiscreteDynamicsWorld;
-import com.bulletphysics.dynamics.RigidBody;
-import com.bulletphysics.collision.shapes.CapsuleShape;
-import com.bulletphysics.collision.shapes.CollisionShape;
-
-import com.bulletphysics.dynamics.constraintsolver.Generic6DofConstraint;
-import com.bulletphysics.dynamics.constraintsolver.HingeConstraint;
-import com.bulletphysics.linearmath.Transform;
-import com.neuronrobotics.sdk.addons.kinematics.AbstractLink;
-import com.neuronrobotics.sdk.addons.kinematics.DHLink;
-import com.neuronrobotics.sdk.addons.kinematics.DHParameterKinematics;
-import com.neuronrobotics.sdk.addons.kinematics.ILinkListener;
-import com.neuronrobotics.sdk.addons.kinematics.LinkConfiguration;
-import com.neuronrobotics.sdk.addons.kinematics.MobileBase;
-import com.neuronrobotics.sdk.addons.kinematics.math.TransformNR;
-import com.neuronrobotics.sdk.pid.PIDLimitEvent;
-import com.neuronrobotics.sdk.util.ThreadUtil;
-
-import Jama.Matrix;
-import eu.mihosoft.vrl.v3d.CSG;
-import javafx.application.Platform;
-import javafx.scene.transform.Affine;
 MobileBase base;
 java.util.List<String> possible = DeviceManager.listConnectedDevice(MobileBase.class)
 Object dev ;
@@ -71,7 +42,7 @@ while(MobileBaseCadManager.get( base).getProcesIndictor().getProgress()<1){
 HashMap<DHLink, CSG> simplecad = MobileBaseCadManager.getSimplecad(base) 
 def baseCad=MobileBaseCadManager.getBaseCad(base)
 m = new MobileBasePhysicsManager(base, baseCad, simplecad);
-/*
+
 ArrayList<CSG> referencedThingy =  (ArrayList<CSG>)ScriptingEngine
 	                    .gitScriptRun(
                                 "https://gist.github.com/4814b39ee72e9f590757.git", // git location of the library
@@ -88,7 +59,6 @@ for(CSG part:referencedThingy){
 		));                      
 }
 
-*/
 Thread t =new Thread({
 	// walk forward 10 increments of 10 mm totalling 100 mm translation
 	TransformNR move = new TransformNR(10,0,0,new RotationNR( 0,0, 2))
