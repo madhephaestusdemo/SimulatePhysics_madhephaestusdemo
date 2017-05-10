@@ -70,7 +70,7 @@ Thread t =new Thread({
 	}
 })
 t.start()
-int msLoopTime =10;
+int msLoopTime =200;
 BowlerStudioController.setCsg(PhysicsEngine.getCsgFromEngine());
 // run the physics engine for a few cycles
 for (int i = 0; i < 35000&& !Thread.interrupted(); i++) {
