@@ -35,8 +35,8 @@ PhysicsEngine.clear();
 
 MobileBasePhysicsManager m;
 
-while(MobileBaseCadManager.get( base).getProcesIndictor().getProgress()<1){
-	println "Waiting for cad to get to 1:"+MobileBaseCadManager.get( base).getProcesIndictor().getProgress()
+while(MobileBaseCadManager.get( base).getProcesIndictor().get()<1){
+	println "Waiting for cad to get to 1:"+MobileBaseCadManager.get( base).getProcesIndictor().get()
 	ThreadUtil.wait(1000)
 }
 
