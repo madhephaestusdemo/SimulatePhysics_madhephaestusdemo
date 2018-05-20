@@ -2,32 +2,24 @@ import javax.vecmath.Vector3f;
 import com.neuronrobotics.bowlerstudio.threed.*
 import org.apache.commons.io.IOUtils;
 
-MobileBase base;
-java.util.List<String> possible = DeviceManager.listConnectedDevice(MobileBase.class)
-Object dev ;
-if(possible.size()==1){
-	dev=DeviceManager.getSpecificDevice(MobileBase.class, possible.get(0));
-}
-//Object dev = DeviceManager.getSpecificDevice(MobileBase.class, "cartWalker");
-//Object dev = DeviceManager.getSpecificDevice(MobileBase.class, "CarlTheWalkingRobot");
-println "found: "+dev
+def base;
 //Check if the device already exists in the device Manager
-if(dev==null){
-	//Create the kinematics model from the xml file describing the D-H compliant parameters. 
-	def file=["https://github.com/madhephaestus/carl-the-hexapod.git","CarlTheRobot.xml"]as String[]
-	//def file=["https://gist.github.com/bcb4760a449190206170.git","CarlTheRobot.xml"]as String[]
-	String xmlContent = ScriptingEngine.codeFromGit(file[0],file[1])[0];
-	MobileBase mb =new MobileBase(IOUtils.toInputStream(xmlContent, "UTF-8"));
-	mb.setGitSelfSource(file);
-	mb.connect();
-	DeviceManager.addConnection(mb,mb.getScriptingName())
-	base = mb;
-	ThreadUtil.wait(1000)
-}else{
-	println "Arm found, runing code"
-	//the device is already present on the system, load the one that exists.
-  	base=(MobileBase) dev
-}
+if(args==null){
+	base=DeviceManager.getSpecificDevice( "CarlTheWalkingRobot",{
+			//If the device does not exist, prompt for the connection
+			
+			MobileBase m = MobileBaseLoader.fromGit(
+				"https://github.com/madhephaestus/carl-the-hexapod.git",
+				"CarlTheRobot.xml"
+				)
+			if(m==null)
+				throw new RuntimeException("Arm failed to assemble itself")
+			println "Connecting new device robot arm "+m
+			return m
+		})
+}else
+	base=args.get(0)
+
 
 base.DriveArc(new TransformNR(), 0);
 PhysicsCore core = PhysicsEngine.get()
